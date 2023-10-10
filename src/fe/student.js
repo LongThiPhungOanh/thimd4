@@ -33,10 +33,10 @@ function displayStudent(data) {
                      <td>${data[i].classroom.name}</td>
                    
                      <td>
-                     <button onclick="displaySave(${data[i].id})" class="btn btn-outline-primary" >Update</button>
+                     <button onclick="displaySave(${data[i].id})"   style="color: black; width: 80px; border-radius: 10px">Update</button>
                      </td>
                      <td>
-                     <button onclick="deleteStudent(${data[i].id})" class="btn btn-outline-warning" >Delete</button>
+                     <button onclick="deleteStudent(${data[i].id})"  style="color: black; width: 80px; border-radius: 10px">Delete</button>
                      </td>
                       </tr>`
     }
@@ -48,6 +48,7 @@ function displaySave(id) {
         $("#home").hide()
         $("#create").hide()
         $("#update").show()
+        localStorage.setItem("id_student",id)
         $.ajax({
             type: "GET",
             url: `http://localhost:8080/api/students/${id}`,
@@ -69,7 +70,7 @@ function displaySave(id) {
 }
 
 function displayClassroomU(id) {
-    localStorage.setItem("id_student",id)
+
     let content = `<select id="classroom_u">`
     for (let i = 0; i < classroom.length; i++) {
         if (classroom[i].id === id) {
